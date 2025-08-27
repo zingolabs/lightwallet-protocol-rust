@@ -4,12 +4,12 @@ Rust-specific bindings for the Zcash lightwallet protocol.
 
 ## Overview
 
-This crate provides automatically generated Rust bindings derived from the language-agnostic Protocol Buffer definitions maintained at [zcash/lightwallet-protocol](https://github.com/zcash/lightwallet-protocol). These `.proto` files define the gRPC interface between Zcash light clients and `lightwalletd` servers.
+This crate provides automatically generated Rust bindings derived from the language-agnostic Protocol Buffer definitions maintained at [zcash/lightwallet-protocol](https://github.com/zcash/lightwallet-protocol). These `.proto` files define the gRPC interface between Zcash light clients and `indexer` servers.
 
 ## Features
 
 - Complete Rust type definitions for all protocol messages
-- gRPC client implementation for connecting to `lightwalletd` servers
+- gRPC client implementation for connecting to `indexer` servers
 - gRPC server traits for implementing custom lightwallet servers
 - Automatic code generation from `.proto` files via `tonic-build`
 
@@ -28,7 +28,7 @@ Then use the generated types in your code:
 use lightwallet_protocol::{BlockId, CompactBlock, RawTransaction};
 use lightwallet_protocol::CompactTxStreamerClient;
 
-// Connect to a lightwalletd server
+// Connect to an indexer server
 let client = CompactTxStreamerClient::connect("http://localhost:9067").await?;
 ```
 
