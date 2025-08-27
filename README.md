@@ -4,7 +4,7 @@ Rust-specific bindings for the Zcash lightwallet protocol.
 
 ## Overview
 
-This crate provides automatically generated Rust bindings derived from the language-agnostic Protocol Buffer definitions maintained at [zcash/lightwalletd](https://github.com/zcash/lightwalletd). These `.proto` files define the gRPC interface between Zcash light clients and `lightwalletd` servers.
+This crate provides automatically generated Rust bindings derived from the language-agnostic Protocol Buffer definitions maintained at [zcash/lightwallet-protocol](https://github.com/zcash/lightwallet-protocol). These `.proto` files define the gRPC interface between Zcash light clients and `lightwalletd` servers.
 
 ## Features
 
