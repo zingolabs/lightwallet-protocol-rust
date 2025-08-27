@@ -1,0 +1,19 @@
+[package]
+name = "lightwallet-protocol"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "Rust bindings for Zcash lightwallet protocol buffers"
+license = "MIT"
+repository = "https://github.com/zingolabs/lightwallet_protocols"
+
+[dependencies]
+prost = "0.13"
+tonic = "0.12"
+
+[build-dependencies]
+tonic-build = "0.12"
+
+[lib]
+name = "lightwallet_protocol"
+path = "src/lib.rs"
