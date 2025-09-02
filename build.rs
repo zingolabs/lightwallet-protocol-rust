@@ -8,7 +8,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Configure the protobuf code generator
     let out_dir = PathBuf::from(std::env::var("OUT_DIR")?);
     
-    tonic_build::configure()
+    tonic_prost_build::configure()
         .out_dir(&out_dir)
         .compile_well_known_types(true)
         .protoc_arg("--experimental_allow_proto3_optional")

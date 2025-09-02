@@ -8,11 +8,12 @@ license = "MIT"
 repository = "https://github.com/zingolabs/lightwallet_protocols"
 
 [dependencies]
-prost = "0.13"
-tonic = "0.12"
+prost = "0.14.1"
+tonic = "0.14.2"
+tonic-prost = "0.14.2"
 
 [build-dependencies]
-tonic-build = "0.12"
+tonic-prost-build = "0.14"
 
 [lib]
 name = "lightwallet_protocol"
