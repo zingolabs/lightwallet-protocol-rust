@@ -7,14 +7,17 @@ description = "Rust bindings for Zcash lightwallet protocol buffers"
 license = "MIT"
 repository = "https://github.com/zingolabs/lightwallet_protocols"
 
+[features]
+rebuild-proto = ["dep:tonic-build", "dep:tonic-prost-build"]
+
 [dependencies]
 prost = "0.14"
 tonic = "0.14"
 tonic-prost = "0.14"
 
 [build-dependencies]
-tonic-build = "0.14"
-tonic-prost-build = "0.14"
+tonic-build = { version = "0.14", optional = true }
+tonic-prost-build = { version = "0.14", optional = true }
 
 [lib]
 name = "lightwallet_protocol"

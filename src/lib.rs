@@ -10,7 +10,7 @@ pub mod cash {
         pub mod wallet {
             pub mod sdk {
                 pub mod rpc {
-                    include!(concat!(env!("OUT_DIR"), "/cash.z.wallet.sdk.rpc.rs"));
+                    include!("generated/cash.z.wallet.sdk.rpc.rs");
                 }
             }
         }
