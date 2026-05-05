@@ -34,17 +34,33 @@ let client = CompactTxStreamerClient::connect("http://localhost:9067").await?;
 
 ## Protocol Source
 
-The `.proto` definitions in this repository are derived from the canonical protocol definitions maintained by the Zcash project. These define the standard interface for:
+The `.proto` definitions in `lightwallet-protocol/` are tracked via `git subtree` from the canonical upstream:
 
-- Retrieving compact blocks and transactions
-- Submitting transactions to the network
-- Querying address balances and UTXOs
-- Accessing mempool data
-- Managing note commitment tree states
+> [zcash/lightwallet-protocol](https://github.com/zcash/lightwallet-protocol)
+
+The current pinned version is **v0.4.1**.
+
+### Updating to a new upstream release
+
+```sh
+make update-proto UPSTREAM_VERSION=v0.4.2
+```
+
+If the new release changes any `.proto` files, regenerate the Rust bindings:
+
+```sh
+make rebuild-proto
+```
+
+Then commit both the subtree merge commit and any changes to `src/generated/`.
 
 ## Building
 
-The protobuf code is generated automatically during the build process using `tonic-build`. The `build.rs` script compiles the `.proto` files into Rust code that is then included in the library.
+The pre-generated Rust bindings in `src/generated/` are committed to the repository, so a normal `cargo build` requires no extra tools. To regenerate from the `.proto` files (requires `protoc`):
+
+```sh
+cargo build --features rebuild-proto
+```
 
 ## License
 
