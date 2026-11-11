@@ -43,7 +43,6 @@ mod tests {
     #[test]
     fn test_compact_block_creation() {
         let block = CompactBlock {
-            proto_version: 1,
             height: 500000,
             hash: vec![0xaa, 0xbb],
             prev_hash: vec![0xcc, 0xdd],
