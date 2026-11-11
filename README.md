@@ -38,7 +38,7 @@ The `.proto` definitions in `lightwallet-protocol/` are tracked via `git subtree
 
 > [zcash/lightwallet-protocol](https://github.com/zcash/lightwallet-protocol)
 
-The current pinned version is **v0.4.1**.
+The current pinned version is **v0.6.0**.
 
 ### Updating to a new upstream release
 

@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this library adheres to Rust's notion of
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- `service.CompactTxStreamer` has added rpc `GetStandardFee`, returning the
+  new `service.StandardFee` message (`feeZat`, `estimatorVersion`): the ZIP
+  317 marginal fee in zatoshis per logical action and the backend
+  fee-estimator version. Servers whose backend lacks the `getstandardfee`
+  JSON-RPC return `Unimplemented`. New since the `0.4.0` release of this
+  crate; the subtree has been updated from upstream `v0.5.0` to
+  [v0.6.0](https://github.com/zcash/lightwallet-protocol/releases/tag/v0.6.0).
+
 ## [v0.6.0] - 2026-10-19
 
 ### Added
