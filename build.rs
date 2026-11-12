@@ -1,10 +1,11 @@
+#![forbid(unsafe_code)]
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(feature = "rebuild-proto")]
     {
         use std::path::PathBuf;
 
-        let out_dir =
-            PathBuf::from(std::env::var("CARGO_MANIFEST_DIR")?).join("src/generated");
+        let out_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR")?).join("src/generated");
 
         println!("cargo:rerun-if-changed=lightwallet-protocol/walletrpc/service.proto");
         println!("cargo:rerun-if-changed=lightwallet-protocol/walletrpc/compact_formats.proto");

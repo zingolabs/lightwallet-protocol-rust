@@ -8,6 +8,8 @@ license = "MIT"
 repository = "https://github.com/zingolabs/lightwallet-protocol-rust"
 exclude = [
     ".github",
+    "Makefile",
+    "from_darkside_tests_build.rs",
     "lightwallet-protocol/.github",
     "lightwallet-protocol/buf.yaml",
 ]

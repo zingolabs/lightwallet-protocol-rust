@@ -4,11 +4,14 @@
 //! protocol buffer definitions, including both the gRPC service definitions
 //! and the compact block format messages.
 
+#![forbid(unsafe_code)]
+
 // Include the generated protobuf code
 pub mod cash {
     pub mod z {
         pub mod wallet {
             pub mod sdk {
+                #[allow(clippy::double_must_use)]
                 pub mod rpc {
                     include!("generated/cash.z.wallet.sdk.rpc.rs");
                 }

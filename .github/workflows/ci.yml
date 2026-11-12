@@ -23,12 +23,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
       - uses: Swatinem/rust-cache@v2
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-nextest
+      - name: Check the formatting
+        run: cargo fmt --check
       - name: Check every target
         run: cargo check --locked --all-targets
+      - name: Lint every target and deny warnings
+        run: cargo clippy --locked --all-targets -- --deny warnings
       - name: Run the tests
         run: cargo nextest run --locked
 
