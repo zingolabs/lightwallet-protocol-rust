@@ -16,6 +16,15 @@ and this library adheres to Rust's notion of
   crate; the subtree has been updated from upstream `v0.5.0` to
   [v0.6.0](https://github.com/zcash/lightwallet-protocol/releases/tag/v0.6.0).
 
+### Changed
+- **Breaking for server implementors:** the generated
+  `compact_tx_streamer_server::CompactTxStreamer` trait has a new required
+  method, `get_standard_fee`, with no default body. Every implementation of
+  the trait must add the method before it compiles against this release. An
+  implementation whose backend lacks the `getstandardfee` JSON-RPC returns
+  `tonic::Status::unimplemented`. Users of `CompactTxStreamerClient` are
+  unaffected.
+
 ## [v0.6.0] - 2026-10-19
 
 ### Added
