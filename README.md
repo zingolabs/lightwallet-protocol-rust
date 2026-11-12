@@ -19,7 +19,7 @@ Add this crate to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-lightwallet-protocol = "0.4.0"
+lightwallet-protocol = "0.5.0"
 ```
 
 Then use the generated types in your code:
