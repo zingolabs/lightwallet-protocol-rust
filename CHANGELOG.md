@@ -13,6 +13,8 @@ file arrives through `git subtree` and must not be edited here.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-11
+
 ### Added
 - `service.CompactTxStreamer` has added rpc `GetStandardFee`, returning the
   new `service.StandardFee` message (`feeZat`, `estimatorVersion`): the ZIP
