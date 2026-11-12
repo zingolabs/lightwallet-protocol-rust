@@ -29,6 +29,7 @@ pub use cash::z::wallet::sdk::rpc::compact_tx_streamer_server::{
 #[cfg(test)]
 mod tests {
     use super::*;
+    use prost::Message;
 
     #[test]
     fn test_block_id_creation() {
@@ -43,7 +44,6 @@ mod tests {
     #[test]
     fn test_compact_block_creation() {
         let block = CompactBlock {
-            proto_version: 1,
             height: 500000,
             hash: vec![0xaa, 0xbb],
             prev_hash: vec![0xcc, 0xdd],
@@ -64,5 +64,24 @@ mod tests {
         };
         assert_eq!(tx.data, vec![0x01, 0x02, 0x03]);
         assert_eq!(tx.height, 42);
+    }
+
+    #[test]
+    fn standard_fee_keeps_its_wire_encoding() -> Result<(), prost::DecodeError> {
+        const MARGINAL_FEE_ZAT: u64 = 5_000;
+        const ESTIMATOR_VERSION: u32 = 1;
+        const WIRE_ENCODING: [u8; 5] = [0x08, 0x88, 0x27, 0x10, 0x01];
+
+        let standard_fee = StandardFee {
+            fee_zat: MARGINAL_FEE_ZAT,
+            estimator_version: ESTIMATOR_VERSION,
+        };
+
+        let encoded = standard_fee.encode_to_vec();
+        assert_eq!(encoded, WIRE_ENCODING);
+
+        let decoded = StandardFee::decode(encoded.as_slice())?;
+        assert_eq!(decoded, standard_fee);
+        Ok(())
     }
 }

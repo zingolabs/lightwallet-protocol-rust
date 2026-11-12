@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  # The protoc release that generated the committed bindings.
+  PROTOC_VERSION: '36.1'
+
+jobs:
+  test:
+    name: check and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-nextest
+      - name: Check every target
+        run: cargo check --locked --all-targets
+      - name: Run the tests
+        run: cargo nextest run --locked
+
+  bindings:
+    name: generated bindings are current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: ${{ env.PROTOC_VERSION }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Regenerate the bindings from the vendored protos
+        run: cargo build --locked --features rebuild-proto
+      - name: Fail when the committed bindings differ
+        run: git diff --exit-code -- src/generated
