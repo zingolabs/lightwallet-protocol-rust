@@ -4,6 +4,8 @@
 //! protocol buffer definitions, including both the gRPC service definitions
 //! and the compact block format messages.
 
+#![forbid(unsafe_code)]
+
 // Include the generated protobuf code
 pub mod cash {
     pub mod z {
