@@ -43,7 +43,7 @@ The current pinned version is **v0.6.0**.
 ### Updating to a new upstream release
 
 ```sh
-make update-proto UPSTREAM_VERSION=v0.4.2
+make update-proto UPSTREAM_VERSION=vX.Y.Z
 ```
 
 If the new release changes any `.proto` files, regenerate the Rust bindings:
